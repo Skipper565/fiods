@@ -6,19 +6,13 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class UnZip {
-    /*
-    private static final String INPUT_ZIP_FILE = "Kazety.ods";
-    private static final String OUTPUT_FOLDER = "output";
 
-    public static void main( String[] args ) {
-        UnZip unZip = new UnZip();
-        unZip.unZipIt(INPUT_ZIP_FILE,OUTPUT_FOLDER);
-    }*/
+    private static final String INPUT_ZIP_FILE = "Albums.ods";
 
     /**
      * Unzip it
      * @param zipFile input zip file
-     * @param output zip file output folder
+     * @param outputFolder zip file output folder
      */
     public void unZipIt(String zipFile, String outputFolder) {
 

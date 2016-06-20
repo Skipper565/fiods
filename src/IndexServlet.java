@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by kruta on 13.05.2016.
+ * Created by Petr Zeman on 13.05.2016.
  */
-@WebServlet(name = "IndexServlet", urlPatterns = {"/"})
+@WebServlet(name = "IndexServlet", urlPatterns = {"/index"})
 public class IndexServlet extends HttpServlet {
+
+    private JVoiceXMLClient voiceXMLClient = null;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +33,14 @@ public class IndexServlet extends HttpServlet {
             writer.println("</body>");
             writer.println("</html>");
         }*/
+
+        if (voiceXMLClient != null) {
+            voiceXMLClient.disconnected();
+            System.out.println("Previous text client disconneted.");
+        }
+
+        voiceXMLClient = new JVoiceXMLClient();
+
         String fiods = "fiods";
         request.setAttribute("io", fiods);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
