@@ -22,11 +22,13 @@ public class DocumentUtils {
     private static final String TAG_TEXT_P = "text:p";
     private static final String TAG_TABLE_ROW = "table:table-row";
 
-    public Document getDocument(String xml) throws SAXException, ParserConfigurationException,
+    public Document getDocument(String ods) throws SAXException, ParserConfigurationException,
             IOException {
+        UnZip unzip = new UnZip();
+        unzip.unZipIt(ods, "/home/sarhan/Documents/School/fiods/output");
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        return builder.parse(xml);
+        return builder.parse("/home/sarhan/Documents/School/fiods/output/content.xml");
     }
 
     public NodeList getTables(Document doc) {
