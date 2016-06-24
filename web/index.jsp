@@ -35,7 +35,7 @@
         <c:out value="${row.getTextContent()}" /><br />
       </c:forEach>
     </c:if>
-    <input type="submit" name="submit_button" value="Pome dopice!" />
+    <input type="submit" name="submit_button" value="Dalej" />
   </form>
 
   </body>

@@ -59,7 +59,6 @@ public class IndexServlet extends HttpServlet {
                         Element e = (Element) nodeList.item(i);
                         tables.add(e.getAttribute("table:name"));
                     }
-                    //req.setAttribute("list", list);
                     req.setAttribute("tables", tables);
                     req.setAttribute("step", "step2");
                 } catch (Exception e) {
@@ -70,15 +69,11 @@ public class IndexServlet extends HttpServlet {
             case "/step2":
                 tableName = req.getParameter("table");
                 req.setAttribute("step", "step3");
-                //req.setAttribute("list", req.getParameter("list"));
-                //
                 initializePage(req, resp);
                 break;
             case "/step3":
                 String searchValue = req.getParameter("value");
-                req.setAttribute("abcdef", searchValue);
                 Element sheet = getDocumentUtils().getTable(nodeList, tableName);
-                //if(sheet == null) throw new NullPointerException("");
                 List<Element> rows = getDocumentUtils().getRows(sheet, searchValue);
                 req.setAttribute("rows", rows);
                 req.setAttribute("step", "step4");
