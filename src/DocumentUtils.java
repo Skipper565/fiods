@@ -63,7 +63,7 @@ public class DocumentUtils {
                 Node e;
                 if(values.getLength() != 0) {
                     e = values.item(0);
-                    if(value.equals(e.getTextContent())) {
+                    if(e.getTextContent().contains(value)) {
                         rows.add(idElement);
                     }
                 }
