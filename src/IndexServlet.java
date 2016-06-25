@@ -41,6 +41,8 @@ public class IndexServlet extends HttpServlet {
                     return;
                 }
 
+                //System.out.println(System.getProperty("java.io.tmpdir"));
+
                 // create temp file
                 File directory = new File(getServletContext().getRealPath("/"));
                 File file = File.createTempFile("tmp", ".ods", null);
@@ -49,10 +51,12 @@ public class IndexServlet extends HttpServlet {
                 file.setWritable(true, false);
                 req.setAttribute("path", file.getAbsolutePath());
 
+                filePart.write(file.getAbsolutePath());
+
                 List<String> tables = new ArrayList<>();
                 try {
                     //NodeList
-                    String path = "/home/sarhan/Documents/School/fiods/src/Albums.ods";
+                    //String path = "/home/sarhan/Documents/School/fiods/src/Albums.ods";
                     nodeList = getDocumentUtils().getTables(getDocumentUtils().getDocument(file.getAbsolutePath()));
 
                     for(int i = 0; i < nodeList.getLength(); ++i) {

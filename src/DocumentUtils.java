@@ -21,14 +21,15 @@ public class DocumentUtils {
     private static final String TAG_TABLE_TABLE_CELL = "table:table-cell";
     private static final String TAG_TEXT_P = "text:p";
     private static final String TAG_TABLE_ROW = "table:table-row";
+    private static final String TEMP_DIR = "java.io.tmpdir";
 
     public Document getDocument(String ods) throws SAXException, ParserConfigurationException,
             IOException {
         UnZip unzip = new UnZip();
-        unzip.unZipIt(ods, "/home/sarhan/Documents/School/fiods/output");
+        unzip.unZipIt(ods, System.getProperty(TEMP_DIR));
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        return builder.parse("/home/sarhan/Documents/School/fiods/output/content.xml");
+        return builder.parse(System.getProperty(TEMP_DIR) + "/content.xml");
     }
 
     public NodeList getTables(Document doc) {
