@@ -87,7 +87,12 @@
                                 </c:if>
 
                       </fieldset>
-                      <input type="submit"  class="btn btn-primary" name="submit_button" value="Next" />
+                        <c:if test="${step != 'step4'}">
+                            <input type="submit"  class="btn btn-primary" name="submit_button" value="Next" />
+                        </c:if>
+                        <c:if test="${step == 'step4'}">
+                            <input type="submit"  class="btn btn-primary btn-success" name="submit_button" value="Search Again" />
+                        </c:if>
 
                   </form>
           </div>

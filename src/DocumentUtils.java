@@ -63,12 +63,27 @@ public class DocumentUtils {
                 Node e;
                 if(values.getLength() != 0) {
                     e = values.item(0);
-                    if(e.getTextContent().contains(value)) {
+                    if(e.getTextContent().toLowerCase().contains(value.toLowerCase())) {
                         rows.add(idElement);
+                        break;
                     }
                 }
             }
         }
         return rows;
+    }
+
+    public List<List<String>> NodesToStrings(List<Element> rows){
+        List<List<String>> strings = new ArrayList<List<String>>();
+        for (Element row: rows) {
+            NodeList children = row.getChildNodes();
+            List<String> rowStrings = new ArrayList<String>();
+            for(int i = 0; i<children.getLength(); i++)
+            {
+                rowStrings.add(i, children.item(i).getTextContent());
+            }
+            strings.add(rowStrings);
+        }
+        return strings;
     }
 }

@@ -79,7 +79,7 @@ public class IndexServlet extends HttpServlet {
                 String searchValue = req.getParameter("value");
                 Element sheet = getDocumentUtils().getTable(nodeList, tableName);
                 List<Element> rows = getDocumentUtils().getRows(sheet, searchValue);
-                List<List<String>> rowStrings = NodesToStrings(rows);
+                List<List<String>> rowStrings = getDocumentUtils().NodesToStrings(rows);
                 req.setAttribute("rows", rowStrings);
                 req.setAttribute("step", "step4");
                 initializePage(req, resp);
@@ -136,18 +136,6 @@ public class IndexServlet extends HttpServlet {
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
     
-    private List<List<String>> NodesToStrings(List<Element> rows){
-        List<List<String>> strings = new ArrayList<List<String>>();
-        for (Element row: rows) {
-            NodeList children = row.getChildNodes();
-            List<String> rowStrings = new ArrayList<String>();
-            for(int i = 0; i<children.getLength(); i++)
-            {
-                rowStrings.add(i, children.item(i).getTextContent());
-            }
-            strings.add(rowStrings);
-        }
-        return strings;
-    }
+
 
 }

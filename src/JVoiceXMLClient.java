@@ -1,11 +1,4 @@
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.util.Properties;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import java.net.UnknownHostException;
 import org.jvoicexml.ConnectionInformation;
 import org.jvoicexml.JVoiceXml;
 import org.jvoicexml.Session;
@@ -13,6 +6,14 @@ import org.jvoicexml.client.text.TextListener;
 import org.jvoicexml.client.text.TextServer;
 import org.jvoicexml.event.ErrorEvent;
 import org.jvoicexml.xml.ssml.SsmlDocument;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
+import java.util.Properties;
 
 /**
  * Created by Petr Zeman on 20.06.2016.
