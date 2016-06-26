@@ -49,7 +49,7 @@
 
                                 <c:if test="${step == 'step1'}">
                                     <label for="exampleInputFile">Hello. Please choose a file you want to search.</label>
-                                    <input type="file" name="file"  class="form-control-file" id="exampleInputFile"/>
+                                    <input type="file" name="file"  class="form-control-file" id="exampleInputFile" accept=".ods"/>
                                 </c:if>
 
 

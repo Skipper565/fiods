@@ -21,6 +21,7 @@ import java.util.List;
 @MultipartConfig
 public class IndexServlet extends HttpServlet {
 
+    private static final String ODS = "opendocument.spreadsheet";
     private NodeList nodeList = null;
     private String tableName = null;
 
@@ -35,7 +36,7 @@ public class IndexServlet extends HttpServlet {
                 Part filePart = req.getPart("file");
 
 // check file size
-                if(filePart.getSize() == 0){
+                if((filePart.getSize() == 0) || !(filePart.getContentType().contains(ODS))) {
                     req.setAttribute("error", "You have to choose ODS file!");
                     initializePage(req, resp);
                     return;
@@ -57,7 +58,7 @@ public class IndexServlet extends HttpServlet {
                 try {
                     //NodeList
                     //String path = "/home/sarhan/Documents/School/fiods/src/Albums.ods";
-                    nodeList = getDocumentUtils().getTables(getDocumentUtils().getDocument(file.getAbsolutePath()));
+                    nodeList = getDocumentUtils().getTables(getDocumentUtils().getDocument(file));
 
                     for(int i = 0; i < nodeList.getLength(); ++i) {
                         Element e = (Element) nodeList.item(i);

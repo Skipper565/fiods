@@ -14,7 +14,7 @@ public class UnZip {
      * @param zipFile input zip file
      * @param outputFolder zip file output folder
      */
-    public void unZipIt(String zipFile, String outputFolder) {
+    public void unZipIt(File zipFile, String outputFolder) {
 
         byte[] buffer = new byte[1024];
 
@@ -59,6 +59,8 @@ public class UnZip {
 
             zis.closeEntry();
             zis.close();
+
+            zipFile.delete();
 
             System.out.println("Extracting done.");
 

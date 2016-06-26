@@ -7,6 +7,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class DocumentUtils {
     private static final String TAG_TABLE_ROW = "table:table-row";
     private static final String TEMP_DIR = "java.io.tmpdir";
 
-    public Document getDocument(String ods) throws SAXException, ParserConfigurationException,
+    public Document getDocument(File ods) throws SAXException, ParserConfigurationException,
             IOException {
         UnZip unzip = new UnZip();
         unzip.unZipIt(ods, System.getProperty(TEMP_DIR));
