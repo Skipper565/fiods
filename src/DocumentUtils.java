@@ -35,7 +35,6 @@ public class DocumentUtils {
 
     public NodeList getTables(Document doc) {
         NodeList idList = doc.getElementsByTagName(TAG_TABLE_TABLE);
-
         return idList;
     }
 

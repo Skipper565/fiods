@@ -1,17 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <%@ page import="org.w3c.dom.NodeList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${empty step}">
   <c:set var="step" value="step1" />
 </c:if>
-<!DOCTYPE html>
-<html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:vxml="http://www.w3.org/2001/vxml">
   <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="/css/bootstrap.min.css" rel="stylesheet">
       <link href="/css/template.css" rel="stylesheet">
     <title>FIODS</title>
+
+      <c:if test="${step == 'step2'}">
+          <vxml:form xmlns:vxml="http://www.w3.org/2001/vxml" id="welcomeForm" style="display: none">
+              <vxml:field name="sheet">
+                  <vxml:prompt>Please choose one of the sheets in your file</vxml:prompt>
+                  <!-- This is an inline grammar. -->
+                  <vxml:grammar type="application/srgs+xml" root="welcome_rule" version="1.0">
+                      <vxml:rule id="welcome_rule" scope="public">
+                          <vxml:one-of>
+                              <c:forEach items="${tables}" var="table">
+                                  <vxml:item>${table}</vxml:item>
+                              </c:forEach>
+                          </vxml:one-of>
+                      </vxml:rule>
+                  </vxml:grammar>
+                  <vxml:filled>
+                      <vxml:assign name="document.getElementById('SelectSheet')"
+                                   expr="sheet"/>
+                  </vxml:filled>
+                  <vxml:noinput>
+                      Please say one of the sheets.; responseType:PROMPT;
+                  </vxml:noinput>
+                  <vxml:nomatch>
+                      I did not understand. Please Try again. ; responseType:PROMPT;
+                  </vxml:nomatch>
+              </vxml:field>
+          </vxml:form>
+      </c:if>
+
+      <c:if test="${step == 'step2'}">
+          <vxml:form xmlns:vxml="http://www.w3.org/2001/vxml" id="welcomeForm" style="display: none">
+              <vxml:field name="sheet">
+                  <vxml:prompt>Please choose one of the sheets in your file</vxml:prompt>
+                  <!-- This is an inline grammar. -->
+                  <vxml:grammar type="application/srgs+xml" root="welcome_rule" version="1.0">
+                      <vxml:rule id="welcome_rule" scope="public">
+                          <vxml:one-of>
+                              <c:forEach items="${tables}" var="table">
+                                  <vxml:item>${table}</vxml:item>
+                              </c:forEach>
+                          </vxml:one-of>
+                      </vxml:rule>
+                  </vxml:grammar>
+                  <vxml:filled>
+                      <vxml:assign name="document.getElementById('SelectSheet')"
+                                   expr="sheet"/>
+                  </vxml:filled>
+                  <vxml:noinput>
+                      Please say one of the sheets.; responseType:PROMPT;
+                  </vxml:noinput>
+                  <vxml:nomatch>
+                      I did not understand. Please Try again. ; responseType:PROMPT;
+                  </vxml:nomatch>
+              </vxml:field>
+          </vxml:form>
+      </c:if>
+
+      <c:if test="${step == 'step3'}">
+          <vxml:form xmlns:vxml="http://www.w3.org/2001/vxml" id="vxmlsearch" style="display: none">
+              <vxml:field name="album">
+                  <vxml:prompt>The sheet contains the following albums. Choose one of them to hear details.</vxml:prompt>
+                  <!-- This is an inline grammar. -->
+                  <vxml:grammar type="application/srgs+xml" root="welcome_rule" version="1.0">
+                      <vxml:rule id="welcome_rule" scope="public">
+                          <vxml:one-of>
+                              <c:forEach items="${albs}" var="sheet">
+                                  <vxml:item>${sheet[1]}</vxml:item>
+                              </c:forEach>
+                          </vxml:one-of>
+                      </vxml:rule>
+                  </vxml:grammar>
+                  <vxml:filled>
+                      <vxml:assign name="document.getElementById('searchString')"
+                                   expr="album"/>
+                  </vxml:filled>
+                  <vxml:noinput>
+                      Please say one of the albums.; responseType:PROMPT;
+                  </vxml:noinput>
+                  <vxml:nomatch>
+                      I did not understand. Please Try again. ; responseType:PROMPT;
+                  </vxml:nomatch>
+              </vxml:field>
+          </vxml:form>
+      </c:if>
+
+      <c:if test="${step == 'step4'}">
+          <vxml:form xmlns:vxml="http://www.w3.org/2001/vxml" id="vxmlsearch" style="display: none">
+             <block> Results of your search are: </block>
+              <c:if test="${empty rows}">No results found!</c:if>
+              <c:forEach items="${rows}" var="row">
+                  <promtp>
+                      <c:forEach items="${row}" var="field">
+                              <c:out value="${field}"/><break strength="weak" time="250" />
+                      </c:forEach>
+                  </promtp>
+              </c:forEach>
+              </table>
+          </vxml:form>
+      </c:if>
+
+
   </head>
   <body>
 
@@ -56,8 +161,8 @@
                                 <c:if test="${step == 'step2'}">
                                   <c:out value="${path}" />
                                   <input type="hidden" value="${list}" />
-                                    <label for="Select">Please select one of the sheets in your document.</label>
-                                    <select name="table" class="form-control" id="Select">
+                                    <label for="SelectSheet">Please select one of the sheets in your document.</label>
+                                    <select name="table" class="form-control" id="SelectSheet">
                                         <c:forEach items="${tables}" var="table">
                                           <option value="${table}">${table}</option>
                                         </c:forEach>
@@ -76,12 +181,9 @@
                                       <c:forEach items="${rows}" var="row">
                                           <tr>
                                           <c:forEach items="${row}" var="field">
-                                              <td>
-                                              <c:out value="${field}"/>
-                                              </td>
+                                              <td> <c:out value="${field}"/></td>
                                           </c:forEach>
                                           </tr>
-                                        <%--<c:out value="${row.getTextContent()}" /><br />--%>
                                       </c:forEach>
                                     </table>
                                 </c:if>

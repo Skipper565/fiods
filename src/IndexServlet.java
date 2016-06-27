@@ -74,6 +74,12 @@ public class IndexServlet extends HttpServlet {
             case "/step2":
                 tableName = req.getParameter("table");
                 req.setAttribute("step", "step3");
+                /*huhu*/
+                Element sheet1 = getDocumentUtils().getTable(nodeList, tableName);
+                List<Element> rows1 = getDocumentUtils().getRows(sheet1, "");
+                List<List<String>> rowStrings1 = getDocumentUtils().NodesToStrings(rows1);
+                req.setAttribute("albs", rowStrings1);
+                /*huhu*/
                 initializePage(req, resp);
                 break;
             case "/step3":
