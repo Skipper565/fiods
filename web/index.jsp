@@ -48,7 +48,7 @@
       <c:if test="${step == 'step3'}">
           <vxml:form xmlns:vxml="http://www.w3.org/2001/vxml" id="vxmlsearch" style="display: none">
               <vxml:field name="album">
-                  <vxml:prompt>The sheet contains the following albums. Choose one of them to hear details.</vxml:prompt>
+                  <vxml:prompt>The sheet contains the following items. Choose one of them to hear details.</vxml:prompt>
                   <!-- This is an inline grammar. -->
                   <vxml:grammar type="application/srgs+xml" root="welcome_rule" version="1.0">
                       <vxml:rule id="welcome_rule" scope="public">
@@ -64,7 +64,7 @@
                                    expr="album"/>
                   </vxml:filled>
                   <vxml:noinput>
-                      Please say one of the albums.; responseType:PROMPT;
+                      Please say one of the items.; responseType:PROMPT;
                   </vxml:noinput>
                   <vxml:nomatch>
                       I did not understand. Please Try again. ; responseType:PROMPT;
