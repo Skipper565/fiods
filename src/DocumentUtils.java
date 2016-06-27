@@ -107,4 +107,10 @@ public class DocumentUtils {
         }
         return tables;
     }
+
+    public static List<List<String>> searchForValue(NodeList nodeList, String tableName, String searchValue) {
+        Element sheet = DocumentUtils.getTable(nodeList, tableName);
+        List<Element>rows = DocumentUtils.getRows(sheet, searchValue);
+        return DocumentUtils.elementsToStringLists(rows);
+    }
 }

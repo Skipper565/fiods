@@ -1,4 +1,3 @@
-import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import javax.servlet.ServletException;
@@ -10,12 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Petr Zeman on 13.05.2016.
  */
-//@WebServlet(name = "IndexServlet", urlPatterns = {"/index"})
 @WebServlet("/index/*")
 @MultipartConfig
 public class IndexServlet extends HttpServlet {
@@ -36,7 +33,7 @@ public class IndexServlet extends HttpServlet {
                     FileUtils.checkODSFileSize(filePart);
                     req.setAttribute("fileName", DocumentUtils.getFileName(filePart));
 
-                    // create temp file
+                    // create temp files
                     File tmpODSFile = File.createTempFile("tmp", ".ods", null);
                     File tmpXMLFile = File.createTempFile("tmp", ".xml", null);
                     FileUtils.partToFile(filePart, tmpODSFile);
@@ -48,21 +45,14 @@ public class IndexServlet extends HttpServlet {
                     break;
                 case "/step2":
                     tableName = req.getParameter("table");
+                    // Search for all rows. Need for VoiceXML.
+                    req.setAttribute("albs", DocumentUtils.searchForValue(nodeList, tableName, ""));
                     req.setAttribute("step", "step3");
-                    /*huhu*/
-                    Element sheet1 = DocumentUtils.getTable(nodeList, tableName);
-                    List<Element> rows1 = DocumentUtils.getRows(sheet1, "");
-                    List<List<String>> rowStrings1 = DocumentUtils.elementsToStringLists(rows1);
-                    req.setAttribute("albs", rowStrings1);
-                    /*huhu*/
                     initializePage(req, resp);
                     break;
                 case "/step3":
                     String searchValue = req.getParameter("value");
-                    Element sheet = DocumentUtils.getTable(nodeList, tableName);
-                    List<Element> rows = DocumentUtils.getRows(sheet, searchValue);
-                    List<List<String>> rowStrings = DocumentUtils.elementsToStringLists(rows);
-                    req.setAttribute("rows", rowStrings);
+                    req.setAttribute("rows", DocumentUtils.searchForValue(nodeList, tableName, searchValue));
                     req.setAttribute("step", "step4");
                     initializePage(req, resp);
                     break;
