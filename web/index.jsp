@@ -159,7 +159,7 @@
 
 
                                 <c:if test="${step == 'step2'}">
-                                  <c:out value="${path}" />
+                                  <c:out value="Selected file: ${fileName}" /><br/>
                                   <input type="hidden" value="${list}" />
                                     <label for="SelectSheet">Please select one of the sheets in your document.</label>
                                     <select name="table" class="form-control" id="SelectSheet">
