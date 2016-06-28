@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by Petr Zeman on 13.05.2016.
+ * Class with methods used for work with .xml file
  */
 public class DocumentUtils {
 
@@ -27,6 +28,15 @@ public class DocumentUtils {
     private static final String SPLIT_SEPARATOR = ";";
     private static final String FILENAME = "filename";
 
+    /**
+     * Parses an .xml file extracted form given .ods file to document type
+     * @param odsFile given .ods file
+     * @param xmlFile .xml file to witch content.xml would be extracted
+     * @return document to work with
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws IOException
+     */
     public static Document getDocument(File odsFile, File xmlFile) throws SAXException, ParserConfigurationException,
             IOException {
         FileUtils.odsToXML(odsFile, xmlFile);
@@ -35,11 +45,22 @@ public class DocumentUtils {
         return builder.parse(xmlFile);
     }
 
+    /**
+     * Finds all sheets in document
+     * @param doc given document
+     * @return list of all sheets
+     */
     public static NodeList getTables(Document doc) {
         NodeList idList = doc.getElementsByTagName(TAG_TABLE_TABLE);
         return idList;
     }
 
+    /**
+     * Selects one particular sheet from document
+     * @param list list of all sheets
+     * @param tableName name of the sheet to be selected
+     * @return selected sheet
+     */
     public static Element getTable(NodeList list, String tableName) {
         for(int i = 0; i < list.getLength(); ++i) {
             Element idElement = (Element) list.item(i);
@@ -51,6 +72,12 @@ public class DocumentUtils {
         return null;
     }
 
+    /**
+     * Selects all rows containing given search value from sheet
+     * @param table sheet to search in
+     * @param value search value
+     * @return list of rows
+     */
     public static List<Element> getRows(Element table, String value) {
         List<Element> rows = new ArrayList<Element>();
         NodeList list = table.getElementsByTagName(TAG_TABLE_ROW);
@@ -75,6 +102,11 @@ public class DocumentUtils {
         return rows;
     }
 
+    /**
+     * Converts rows to list of string-lists
+     * @param rows rows to be converted
+     * @return list of string-lists containing data form given rows
+     */
     public static List<List<String>> elementsToStringLists(List<Element> rows){
         List<List<String>> strings = new ArrayList<List<String>>();
         for (Element row: rows) {
@@ -89,6 +121,11 @@ public class DocumentUtils {
         return strings;
     }
 
+    /**
+     * Gets file name from the part
+     * @param part part to get name from
+     * @return file name
+     */
     public static String getFileName(final Part part) {
         for (String content : part.getHeader(CONTENT_DISPOSITION_HEADER).split(SPLIT_SEPARATOR)) {
             if (content.trim().startsWith(FILENAME)) {
@@ -99,6 +136,11 @@ public class DocumentUtils {
         return null;
     }
 
+    /**
+     * Converts list of nodes to list of strings
+     * @param nodeList given list of nodes
+     * @return list of strings
+     */
     public static List<String> nodeListToStringList(NodeList nodeList) {
         List<String> tables = new ArrayList<String>();
         for(int i = 0; i < nodeList.getLength(); i++) {
@@ -108,6 +150,13 @@ public class DocumentUtils {
         return tables;
     }
 
+    /**
+     * Creates the final list of rows containing search value usable by the web app
+     * @param nodeList list of nodes to search in
+     * @param tableName name of the table to search in
+     * @param searchValue value to search for
+     * @return list of string-lists with data from rows containing search value
+     */
     public static List<List<String>> searchForValue(NodeList nodeList, String tableName, String searchValue) {
         Element sheet = DocumentUtils.getTable(nodeList, tableName);
         List<Element>rows = DocumentUtils.getRows(sheet, searchValue);

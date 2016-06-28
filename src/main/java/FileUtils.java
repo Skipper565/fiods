@@ -8,6 +8,7 @@ import java.util.zip.ZipInputStream;
 
 /**
  * Created by Stanislav Cerny on 18.06.2016.
+ * Class with methods used for work with .ods file
  */
 public class FileUtils {
 
@@ -46,6 +47,12 @@ public class FileUtils {
         odsFile.delete();
     }
 
+    /**
+     * Creates a temporary copy of an .ods file selected by user to work with
+     * @param part file from the web app given by user
+     * @param file target temporary file
+     * @throws IOException
+     */
     public static void partToFile(Part part, File file) throws IOException {
         file.setReadable(true, false);
         file.setExecutable(true, false);
@@ -53,6 +60,10 @@ public class FileUtils {
         part.write(file.getAbsolutePath());
     }
 
+    /**
+     * Checks whether the given file is of correct type and non-empty
+     * @param part file from the web app given by user
+     */
     public static void checkODSFileSize(Part part) {
         if(part.getSize() == 0) {
             throw new IllegalArgumentException("No file selected");
