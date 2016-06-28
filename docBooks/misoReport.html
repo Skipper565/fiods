@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>FIODS final report</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/></head><body><div xml:lang="en" class="article"><div class="titlepage"><div><div><h1 class="title"><a id="idm45457659903504"/>FIODS final report</h1></div><div><div class="author"><h3 class="author">Michal Krchňák</h3><code class="email">&lt;<a class="email" href="mailto:422329@mail.muni.cz">422329@mail.muni.cz</a>&gt;</code></div></div></div><hr/></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="section"><a href="#introduction">Úvod</a></span></dt><dt><span class="section"><a href="#solution">Popis riešenia</a></span></dt></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title"><a id="introduction"/>Úvod</h2></div></div></div><p>
+			Našou úlohou bolo navrhnúť a implementovať webový dialógový systém v jazyku Java s rozhraním popísaným pomocou štandardov W3C Voice Browser Activity, ktorý umožní pomocou dotazov v prirodzenom jazyku (hlasovo alebo textovo) prehľadávať súborovú kartotéku v súbore vo formáte Open Document Spreadsheet. 
+		</p></div><div class="section"><div class="titlepage"><div><div><h2 class="title"><a id="solution"/>Popis riešenia</h2></div></div></div><p>
+			
+Naplnou mojej prace bolo prehladavanie suboru content.xml, ulohu som rozvrhol do metod ktore boli postupne na sebe zavisle.
+getDocument(inicializovala subor content.xml na citanie)
+getTables(ziskala jednotlive harky/listy dokumentu)
+getTable(na zaklade mena nasla konkretny list, ak sa nenachadzal tak vratila null)
+getRows(metoda vratila riadky z konkretneho harku ktore sa zhodovali s vyhladavanym retazcov)
+Dalej som tuto funkcionalitu prepojil so servletom a vytvoril tak hruby nacrt samotneho vyhladavania, od nacitania suboru, cez vybratie konkretneho harku az po zadanie hladaneho retazca a vypis najdenych riadkov.		</p><p>
+			Pomáhal som tiež pri s refaktoringu kódu. 
+		</p></div></div></body></html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+	<info>
+		<title>FIODS final report</title>
+		<author>
+			<personname>Petr Zeman</personname>
+			<email>422266@mail.muni.cz</email>
+		</author>
+	</info>
+		
+	<section xml:id="introduction">
+		<title>Úvod</title>
+		<para>
+			Naší úlohou bylo navrhnout a implementovat webový dialogový systém v jazyce Java s rozhraním popsaným pomocí standardů W3C Voice Browser Activity, který umožní pomocí dotazů v přírozeném jazyce (hlasově nebo textově) prohledávat souborovou kartotéku v souboru ve formátu Open Document Spreadsheet. 
+		</para>
+	</section>
+	
+	<section xml:id="solution">
+		<title>Popis řešení</title>
+		<para>
+			Moje úloha se váže k chodu samotné aplikace, měl jsem za úkol vytvořit projekt, vlastní git repozitář aplikace, github pages a server, na kterém by aplikace běžela veřejně. Projekt jsem však musel při vývoji párkrát restrukturalizovat, kvůli serveru, na kterém aplikace běží. Bylo zapotřebí přejít na starší Javu 6 a na projekt typu maven.
+		</para>
+		<para>
+			Dále jsem restrukturalizoval třídy a podílel se na refaktoringu.
+		</para>
+		<para>
+			Podílel jsem se i na implementaci JVoiceXML, která se bohužel nakonec z projektu odstranila.
+		</para>
+	</section>
+	
+	<section xml:id="conclusion">
+		<title>Zhrnutí</title>
+		<para>
+			Velkou mírou jsem se podílel na struktuře projektu, pomoci s nástrojem git a správě serveru, na kterém aplikace běží.
+		</para>
+	</section>
+</article>

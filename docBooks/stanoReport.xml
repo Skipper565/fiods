@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+	<info>
+		<title>FIODS final report</title>
+		<author>
+			<personname>Stanislav Černý</personname>
+			<email>422779@mail.muni.cz</email>
+		</author>
+	</info>
+		
+	<section xml:id="introduction">
+		<title>Úvod</title>
+		<para>
+			Našou úlohou bolo navrhnúť a implementovať webový dialógový systém v jazyku Java s rozhraním popísaným pomocou štandardov W3C Voice Browser Activity, ktorý umožní pomocou dotazov v prirodzenom jazyku (hlasovo alebo textovo) prehľadávať súborovú kartotéku v súbore vo formáte Open Document Spreadsheet. 
+		</para>
+	</section>
+	
+	<section xml:id="solution">
+		<title>Popis riešenia</title>
+		<para>
+			Moja úloha spočívala v navrhnutí a implementácii vhodného spôsobu prístupu k zadanému ODS súboru. Pracovať s ODS súborom sme mohli pomocou rôznych externých knižníc, avšak ako najjednoduchšiu možnosť som zvolil vyextrahovanie content.xml z ODS, s ktorým sme ďalej pracovali. Pre tento účel som implementoval jednuduchú util metódu, ktorá sa o to stará.
+		</para>
+		<para>
+			Ďalej som spolu s kolegom Michalom pracoval na úprave metód v triede DocumentUtils a FileUtils. Postaral som sa aj o vytvorenie examplu DocBook reportu a následné vygenerovanie HTML stránok z výsledných reportov.
+		</para>
+	</section>
+	
+	<section xml:id="conclusion">
+		<title>Zhrnutie</title>
+		<para>
+			Veľkou mierou som sa podieľal na refaktorizovaní kódu.
+		</para>
+	</section>
+</article>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+	<info>
+		<title>FIODS final report</title>
+		<author>
+			<personname>Michal Krchňák</personname>
+			<email>422329@mail.muni.cz</email>
+		</author>
+	</info>
+		
+	<section xml:id="introduction">
+		<title>Úvod</title>
+		<para>
+			Našou úlohou bolo navrhnúť a implementovať webový dialógový systém v jazyku Java s rozhraním popísaným pomocou štandardov W3C Voice Browser Activity, ktorý umožní pomocou dotazov v prirodzenom jazyku (hlasovo alebo textovo) prehľadávať súborovú kartotéku v súbore vo formáte Open Document Spreadsheet. 
+		</para>
+	</section>
+	
+	<section xml:id="solution">
+		<title>Popis riešenia</title>
+		<para>
+			
+Naplnou mojej prace bolo prehladavanie suboru content.xml, ulohu som rozvrhol do metod ktore boli postupne na sebe zavisle.
+getDocument(inicializovala subor content.xml na citanie)
+getTables(ziskala jednotlive harky/listy dokumentu)
+getTable(na zaklade mena nasla konkretny list, ak sa nenachadzal tak vratila null)
+getRows(metoda vratila riadky z konkretneho harku ktore sa zhodovali s vyhladavanym retazcov)
+Dalej som tuto funkcionalitu prepojil so servletom a vytvoril tak hruby nacrt samotneho vyhladavania, od nacitania suboru, cez vybratie konkretneho harku az po zadanie hladaneho retazca a vypis najdenych riadkov.		</para>
+		<para>
+			Pomáhal som tiež pri s refaktoringu kódu. 
+		</para>
+	</section>
+	
+	
+</article>

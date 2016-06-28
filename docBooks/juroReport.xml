@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+	<info>
+		<title>FIODS final report</title>
+		<author>
+			<personname>Juraj Uhlár</personname>
+			<email>422160@mail.muni.cz</email>
+		</author>
+	</info>
+		
+	<section xml:id="introduction">
+		<title>Úvod</title>
+		<para>
+			Našou úlohou bolo navrhnúť a implementovať webový dialógový systém v jazyku Java s rozhraním popísaným pomocou štandardov W3C Voice Browser Activity, ktorý umožní pomocou dotazov v prirodzenom jazyku (hlasovo alebo textovo) prehľadávať súborovú kartotéku v súbore vo formáte Open Document Spreadsheet. 
+		</para>
+	</section>
+	
+	<section xml:id="solution">
+		<title>Popis riešenia</title>
+		<para>
+			Mojou úlohou bola organizácia celého projektu a použitie štandardov Voice Browser Activity. Koordinoval som činnosť jednotlivých členov teamu, rozdelil projekt na menšie úlohy ktoré som im zadával a kontroloval ich plnenie. Pri samotnej implementácií som mal na starosti takmer všetko súvisiace s VoiceXML a inými štandardmi Voice Browser Activity. Všetok VoiceXML a SRGS markup je môj. Snažil som sa nájsť najvhodnejší spôsob ako realizovať dialogové rozhranie, dá sa povedať že som viac času strávil vyhladavaním a čítaním dokumentácie ako písaním kódu. Snažil som sa implementovať jVoiceXML a JVoiceXMLForChrome, nakoniec sa mi podarilo demoštrovať funkčnosť nášho VoiceXML rozhrania za pomoci platformy VoxeoEvolution. 
+		</para>
+		<para>
+			Aplikáciu som skrášlil použitím frameworku Twitter Bootstrap a napísal pomocnú metódu ktorá transformuje výsledký hladania na lepšie uchopiteľný formát. Bol som hlavným autorok prezentácie na obhajobu. 
+		</para>
+	</section>
+	
+	<section xml:id="conclusion">
+		<title>Záver</title>
+		<para>
+			Projekt ma mnohému naučil, či už je to práca s Gitom, tvorenie Java web aplikácie, či práca s VoiceXML a príbuznými štandardmi. S ničím z toho som doteraz nemal skúsenosti a projekt mi v mnohom rozšíril obzory, nielem z hladiska vývoja ale aj v súvislosti s prácou v teame a jeho vedením. 
+		</para>
+	</section>
+</article>
