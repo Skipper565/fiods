@@ -52,7 +52,7 @@ public class DocumentUtils {
     }
 
     public static List<Element> getRows(Element table, String value) {
-        List<Element> rows = new ArrayList<>();
+        List<Element> rows = new ArrayList<Element>();
         NodeList list = table.getElementsByTagName(TAG_TABLE_ROW);
 
         for(int i = 0; i < list.getLength(); ++i) {
@@ -100,7 +100,7 @@ public class DocumentUtils {
     }
 
     public static List<String> nodeListToStringList(NodeList nodeList) {
-        List<String> tables = new ArrayList<>();
+        List<String> tables = new ArrayList<String>();
         for(int i = 0; i < nodeList.getLength(); i++) {
             Element e = (Element) nodeList.item(i);
             tables.add(e.getAttribute(TAG_TABLE_NAME));

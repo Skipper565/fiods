@@ -27,39 +27,34 @@ public class IndexServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         try {
-            switch (action) {
-                case "/step1":
-                    Part filePart = req.getPart("file");
-                    FileUtils.checkODSFileSize(filePart);
-                    req.setAttribute("fileName", DocumentUtils.getFileName(filePart));
+            if (action.equals("/step1")) {
+                Part filePart = req.getPart("file");
+                FileUtils.checkODSFileSize(filePart);
+                req.setAttribute("fileName", DocumentUtils.getFileName(filePart));
 
-                    // create temp files
-                    File tmpODSFile = File.createTempFile("tmp", ".ods", null);
-                    File tmpXMLFile = File.createTempFile("tmp", ".xml", null);
-                    FileUtils.partToFile(filePart, tmpODSFile);
-                    nodeList = DocumentUtils.getTables(DocumentUtils.getDocument(tmpODSFile, tmpXMLFile));
+                // create temp files
+                File tmpODSFile = File.createTempFile("tmp", ".ods", null);
+                File tmpXMLFile = File.createTempFile("tmp", ".xml", null);
+                FileUtils.partToFile(filePart, tmpODSFile);
+                nodeList = DocumentUtils.getTables(DocumentUtils.getDocument(tmpODSFile, tmpXMLFile));
 
-                    req.setAttribute("tables", DocumentUtils.nodeListToStringList(nodeList));
-                    req.setAttribute("step", "step2");
-                    initializePage(req, resp);
-                    break;
-                case "/step2":
-                    tableName = req.getParameter("table");
-                    // Search for all rows. Need for VoiceXML.
-                    req.setAttribute("albs", DocumentUtils.searchForValue(nodeList, tableName, ""));
-                    req.setAttribute("step", "step3");
-                    initializePage(req, resp);
-                    break;
-                case "/step3":
-                    String searchValue = req.getParameter("value");
-                    req.setAttribute("rows", DocumentUtils.searchForValue(nodeList, tableName, searchValue));
-                    req.setAttribute("step", "step4");
-                    initializePage(req, resp);
-                    break;
-                case "/step4":
-                    req.setAttribute("step", "step1");
-                    initializePage(req, resp);
-                    break;
+                req.setAttribute("tables", DocumentUtils.nodeListToStringList(nodeList));
+                req.setAttribute("step", "step2");
+                initializePage(req, resp);
+            } else if (action.equals("/step2")) {
+                tableName = req.getParameter("table");
+                // Search for all rows. Need for VoiceXML.
+                req.setAttribute("albs", DocumentUtils.searchForValue(nodeList, tableName, ""));
+                req.setAttribute("step", "step3");
+                initializePage(req, resp);
+            } else if (action.equals("/step3")) {
+                String searchValue = req.getParameter("value");
+                req.setAttribute("rows", DocumentUtils.searchForValue(nodeList, tableName, searchValue));
+                req.setAttribute("step", "step4");
+                initializePage(req, resp);
+            } else if (action.equals("/step4")) {
+                req.setAttribute("step", "step1");
+                initializePage(req, resp);
             }
         } catch (Exception e) {
             req.setAttribute("error", e.getMessage());
