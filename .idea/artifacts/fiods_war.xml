@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fiods:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/fiods_war</output-path>
+    <root id="archive" name="fiods_war.war">
+      <element id="artifact" artifact-name="fiods:war exploded" />
+    </root>
+  </artifact>
+</component>
